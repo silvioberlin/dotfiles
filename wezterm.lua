@@ -6,8 +6,25 @@ local config = wezterm.config_builder()
 
 -- This is where you actually apply your config choices
 
+-- MacOS: <Option> (Alt) für Umlaute oder Sonderzeichen (z.B. \~etc.) verwenden
 config.send_composed_key_when_left_alt_is_pressed = true
 config.send_composed_key_when_right_alt_is_pressed = true
+
+-- Key bindings
+config.keys = {
+	-- Move backward by word (Option + Left Arrow)
+	{
+		key = "LeftArrow",
+		mods = "ALT",
+		action = wezterm.action.SendString("\x1bb"),
+	},
+	-- Move forward by word (Option + Right Arrow)
+	{
+		key = "RightArrow",
+		mods = "ALT",
+		action = wezterm.action.SendString("\x1bf"),
+	},
+}
 
 config.initial_cols = 125
 config.initial_rows = 40
@@ -25,7 +42,6 @@ config.colors = {
 	brights = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#A277FF", "#a277ff", "#24EAF7", "#24EAF7" },
 }
 
--- install font: brew install --cask font-meslo-lg-nerd-font
 config.font = wezterm.font("MesloLGS Nerd Font Mono")
 config.font_size = 14
 
